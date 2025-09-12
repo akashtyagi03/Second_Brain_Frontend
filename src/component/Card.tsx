@@ -25,7 +25,7 @@ export const Card = (props: CardProps) => {
         <div className="pt-3">
             {props.type === "youtube" && <iframe src="https://www.youtube.com/embed/fEewMS_Ocqo?si=HGUFLTMKS3n0061C" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
             {props.type === "twitter" && <blockquote className="twitter-tweet">
-                <a href={props.link}></a></blockquote>}
+                <a href={props.link?.replace("x.com", "twitter.com")}></a></blockquote>}
         </div>
     </div>;
 }

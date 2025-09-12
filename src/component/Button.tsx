@@ -18,10 +18,11 @@ const sizestyle = {
     "md":"px-4 py-2 text-md",
     "lg":"px-6 py-3 text-lg"
 }
-const defaultstyle = "h-11 font-semibold rounded flex gap-2 cursor-pointer items-center font-light";
+// when someone hover over the button it should have a slight dark effect by doing border and shadow
+const defaultstyle = "font-semibold rounded flex gap-2 cursor-pointer items-center";
 
 export const Button = (props:ButtonProps)=>{
-    return <button className={`${variantstyle[props.variant]} ${defaultstyle} ${sizestyle[props.size]}`}>
+    return <button className={`${variantstyle[props.variant]} ${defaultstyle} ${sizestyle[props.size]}`} onClick={props.onClick}>
         {props.starticon} {props.text} {props.endicon}
     </button>;
 }
