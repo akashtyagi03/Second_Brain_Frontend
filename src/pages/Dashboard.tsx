@@ -21,8 +21,8 @@ export function Dashboard() {
                     </div>
                     <div className='flex gap-2 pt-10 pr-3 justify-end'>
                         <CreateContentModel open={modalopen} onclosed={() => { setmodalopen(false) }} />
-                        <Button starticon={<ShareIcon size="sm" />} variant="primary" size="sm" text="Share Brain" />
-                        <Button starticon={<PlusIcon size="md" />} variant="secondary" size="sm" text="Add content" onClick={() => { setmodalopen(true) }} />
+                        <Button starticon={<ShareIcon size="sm" />} variant="secondary" size="sm" text="Share Brain" />
+                        <Button starticon={<PlusIcon size="md" />} variant="primary" size="sm" text="Add content" onClick={() => { setmodalopen(true) }} />
                     </div>
                 </div>
                 <div className='flex gap-2 pt-5'>

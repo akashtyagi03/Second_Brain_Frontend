@@ -10,7 +10,7 @@ export function Sidebar() {
     return <div className="h-screen bg-white w-70 fixed  left-0 top-0">
         <div className="flex text-2xl pt-4 pl-5 items-center gap-2">
             <div className="text-indigo-600">
-                <BrainIcon />
+                <BrainIcon size="md"/>
             </div>
             Second_Brain
         </div>

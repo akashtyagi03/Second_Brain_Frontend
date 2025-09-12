@@ -6,12 +6,14 @@ interface ButtonProps {
     text: string;
     starticon?: ReactElement;
     endicon?: ReactElement;
+    classname?: string;
     onClick?: () => void;
+    loading?: boolean;
 }
 
 const variantstyle = {
-    "primary":"bg-blue-200 text-indigo-700",
-    "secondary":"bg-indigo-600 text-white"
+    "primary":"bg-indigo-600 text-white",
+    "secondary":"bg-blue-200 text-indigo-700"
 }
 const sizestyle = {
     "sm":"px-2 py-1 text-sm",
@@ -22,7 +24,7 @@ const sizestyle = {
 const defaultstyle = "font-semibold rounded flex gap-2 cursor-pointer items-center";
 
 export const Button = (props:ButtonProps)=>{
-    return <button className={`${variantstyle[props.variant]} ${defaultstyle} ${sizestyle[props.size]}`} onClick={props.onClick}>
+    return <button className={`${variantstyle[props.variant]} ${defaultstyle} ${sizestyle[props.size]} ${props.classname} ${props.loading ? "opacity-50":""} `} onClick={props.onClick} disabled={props.loading}>
         {props.starticon} {props.text} {props.endicon}
     </button>;
 }
