@@ -3,6 +3,11 @@ import { Dashboard } from "./pages/Dashboard"
 import { Signin } from "./pages/Signin"
 import { Signup } from "./pages/Signup"
 
+// add landing page for signup and signin, 
+// add logout button in dashboard page
+// add share button functionality and add more thing like copy to clipboard and many more.
+// add profile page to change password and username
+
 function App() {
   return (
     <BrowserRouter>

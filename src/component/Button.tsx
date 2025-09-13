@@ -4,6 +4,7 @@ interface ButtonProps {
     variant: "primary" | "secondary";
     size: "sm" | "md" | "lg";
     text: string;
+    type?: "button" | "submit" | "reset"; 
     starticon?: ReactElement;
     endicon?: ReactElement;
     classname?: string;
@@ -24,7 +25,8 @@ const sizestyle = {
 const defaultstyle = "font-semibold rounded flex gap-2 cursor-pointer items-center";
 
 export const Button = (props:ButtonProps)=>{
-    return <button className={`${variantstyle[props.variant]} ${defaultstyle} ${sizestyle[props.size]} ${props.classname} ${props.loading ? "opacity-50":""} `} onClick={props.onClick} disabled={props.loading}>
+    return <button type={props.type || "button"}  // ✅ default = "button",
+    className={`${variantstyle[props.variant]} ${defaultstyle} ${sizestyle[props.size]} ${props.classname} ${props.loading ? "opacity-50":""} `} onClick={props.onClick} disabled={props.loading}>
         {props.starticon} {props.text} {props.endicon}
     </button>;
 }

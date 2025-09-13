@@ -37,10 +37,10 @@ export function Signup() {
         </div>
         <div className="bg-white p-10 rounded shadow-lg">
             <h2 className="text-2xl font-bold mb-5">Sign Up</h2>
-            <form className="flex flex-col gap-4">
+            <form className="flex flex-col gap-4" onSubmit={(e)=>e.preventDefault()}>
                 <Input ref={usernameref} placeholder="username" />
                 <Input ref={passwordref} placeholder="Password" />
-                <Button onClick={signup} loading={false} text="Create Account" variant="primary" size="md" classname="flex justify-center items-center rounded-sm" />
+                <Button type="button" onClick={signup} loading={false} text="Create Account" variant="primary" size="md" classname="flex justify-center items-center rounded-sm" />
             </form>
         </div>
     </div>
