@@ -43,6 +43,9 @@ export function Signin() {
                 <Input ref={passwordref} placeholder="Password" />
                 <Button type="button" onClick={signin} loading={false} text="SignIn" variant="primary" size="md" classname="flex justify-center items-center rounded-sm" />
             </form>
+            <div>
+                <p className="mt-4">Don't have an account? <span className="text-blue-500 cursor-pointer" onClick={() => navigate("/")}>Sign Up</span></p>
+            </div>
         </div>
     </div>
 }

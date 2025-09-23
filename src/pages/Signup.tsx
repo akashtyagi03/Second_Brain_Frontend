@@ -23,7 +23,7 @@ export function Signup() {
                 password
             });
             alert("Account created successfully");
-            navigate("/signin");
+            navigate("/dashboard");
           } catch (err) {
             console.error(err);
             alert("Signup failed");
@@ -42,6 +42,9 @@ export function Signup() {
                 <Input ref={passwordref} placeholder="Password" />
                 <Button type="button" onClick={signup} loading={false} text="Create Account" variant="primary" size="md" classname="flex justify-center items-center rounded-sm" />
             </form>
+            <p className="mt-4 text-sm">
+                Already have an account? <span className="text-blue-500 hover:underline" onClick={()=>navigate("/signin")}>Sign In</span>
+            </p>
         </div>
     </div>
 }
