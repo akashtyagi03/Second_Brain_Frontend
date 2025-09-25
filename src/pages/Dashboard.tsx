@@ -9,21 +9,31 @@ import { Sidebar } from '../component/Sidebar'
 import { useContent } from '../hooks/useContent'
 import { ProfileIcon } from '../icon/ProfileIcon'
 import { useNavigate } from 'react-router-dom'
+import { Sharelinkmodel } from '../component/Sharelinkmodel'
+import { BACKEND_URL } from '../config'
+import axios from 'axios'
 
-export function Dashboard() {
+interface DashboardProps {
+    hash: string,
+    setHash: (hash: string) => void
+}
+
+export function Dashboard(props: DashboardProps) {
     const [modalopen, setmodalopen] = useState(false);
+    const [shredlinkmodel, setSharedlinkmodel] = useState(false);
     const [profilemodalopen, setprofilemodalopen] = useState(false);
-    const {contents, refresh} = useContent();
+    const { contents, refresh } = useContent();
     const navigate = useNavigate()
+    // const [hash, setHash] = useState("")
 
-    useEffect(()=>{
+    useEffect(() => {
         refresh()
-    },[modalopen])
+    }, [modalopen])
 
-    const toggleProfileMenu = ()=>{
+    const toggleProfileMenu = () => {
         setprofilemodalopen(!profilemodalopen)
     }
-    
+
     return (
         <div>
             <Sidebar />
@@ -34,7 +44,8 @@ export function Dashboard() {
                     </div>
                     <div className='flex gap-2 pr-3 justify-end'>
                         {/* here we have to use recoil or redux */}
-                        <CreateContentModel open={modalopen} onclosed={() => {setmodalopen(false)}} />
+                        <CreateContentModel open={modalopen} onclosed={() => { setmodalopen(false) }} />
+                        <Sharelinkmodel open={shredlinkmodel} hash={props.hash} onclosed={() => { setSharedlinkmodel(false) }} />
 
                         {/* This div will contain the profile button and the dropdown */}
                         <div className="relative">
@@ -52,19 +63,33 @@ export function Dashboard() {
                                         onClick={() => {
                                             // Add your logout logic here
                                             console.log("Logout clicked");
-                                            setprofilemodalopen(false); 
+                                            setprofilemodalopen(false);
                                             navigate("/signin")
                                         }}>Logout</button>
                                 </div>
                             )}
                         </div>
-                        <Button starticon={<ShareIcon size="sm" />} variant="secondary" size="sm" text="Share Brain" />
+                        <Button starticon={<ShareIcon size="sm" />} variant="secondary" size="sm" text="Share Brain" onClick={async () => {
+                            try{
+
+                                const response = await axios.get(`${BACKEND_URL}/brain/share`, {
+                                    params: { share: true }, // query params
+                                    headers: {
+                                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                                    }
+                                })
+                                props.setHash(response.data.hash)
+                                setSharedlinkmodel(true)
+                            }catch(error){
+                                console.error("Error generating share link:", error);
+                            }
+                        }} />
                         <Button starticon={<PlusIcon size="md" />} variant="primary" size="sm" text="Add content" onClick={() => { setmodalopen(true) }} />
                     </div>
                 </div>
                 <div className='flex gap-2 pt-5 flex-wrap'>
                     {/* type is define yet, have define them */}
-                    {contents.map(({link, title, types})=><Card title={title} types={types} link={link} />)}
+                    {contents.map(({ link, title, types }) => <Card title={title} types={types} link={link} />)}
                 </div>
             </div>
         </div>
