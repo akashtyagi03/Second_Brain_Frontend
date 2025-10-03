@@ -18,10 +18,12 @@ export function Signup() {
         // we have store our BACKEND_URL somewhere else like config.ts
         console.log("first")
         try {
-            await axios.post(BACKEND_URL + "/signup", {
+            const response = await axios.post(BACKEND_URL + "/signup", {
                 username,
                 password
             });
+            const token = response.data.token;
+            localStorage.setItem("token", token);
             alert("Account created successfully");
             navigate("/dashboard");
           } catch (err) {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 
 export function useContent(){
-    const [contents, setContents] =useState([])
+    const [contents, setContents] = useState([])
     function refresh(){
         axios.get(`${BACKEND_URL}/content`, {
             headers:{
