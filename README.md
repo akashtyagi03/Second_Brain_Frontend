@@ -8,7 +8,7 @@ Users can add any website link as a **watch-later link** and access them later.
 All saved links are displayed inside card components.
 
 ⚠️ Note: This project requires the backend to be running.  
-Clone and run the [Second Brain Backend](https://github.com/<your-username>/second_brain_backend) before using the frontend.
+Clone and run the [Second Brain Backend](https://github.com/akashtyagi03/second_brain_backend) before using the frontend.
 
 ## 🚀 Tech Stack
 - React (with Vite + TypeScript)
