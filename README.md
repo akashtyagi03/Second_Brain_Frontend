@@ -7,6 +7,9 @@ This is the frontend for the **Second Brain** application.
 Users can add any website link as a **watch-later link** and access them later.  
 All saved links are displayed inside card components.
 
+⚠️ Note: This project requires the backend to be running.  
+Clone and run the [Second Brain Backend](https://github.com/<your-username>/second_brain_backend) before using the frontend.
+
 ## 🚀 Tech Stack
 - React (with Vite + TypeScript)
 - Tailwind CSS
@@ -14,7 +17,7 @@ All saved links are displayed inside card components.
 ## ⚙️ Installation & Setup
 
 ```bash
-# Clone the repository
+# Clone the frontend repository
 git clone https://github.com/<your-username>/second_brain_frontend.git
 cd second_brain_frontend
 
