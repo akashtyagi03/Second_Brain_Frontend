@@ -18,8 +18,8 @@ Clone and run the [Second Brain Backend](https://github.com/akashtyagi03/second_
 
 ```bash
 # Clone the frontend repository
-git clone https://github.com/<your-username>/second_brain_frontend.git
-cd second_brain_frontend
+git clone https://github.com/akashtyagi03/Second_Brain_Frontend.git
+cd Second_Brain_Frontend
 
 # Install dependencies
 npm install
