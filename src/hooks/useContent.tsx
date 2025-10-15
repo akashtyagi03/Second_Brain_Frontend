@@ -7,7 +7,7 @@ export function useContent(){
     function refresh(){
         axios.get(`${BACKEND_URL}/content`, {
             headers:{
-                "Authorization":`Bearer ${localStorage.getItem("token")}`
+                "Authorization":`${localStorage.getItem("token")}`
             }
         })
             .then((r)=>{

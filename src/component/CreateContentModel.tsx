@@ -32,7 +32,7 @@ export const CreateContentModel = (props: Modelprops) => {
             types
         }, {
             headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
+                "Authorization": `${localStorage.getItem("token")}`
             }
         }).then((res) => {
             console.log(res.data)

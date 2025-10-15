@@ -1,15 +1,40 @@
+import axios from "axios";
 import { DeleteIcon } from "../icon/DeleteIcon";
 import { ShareIcon } from "../icon/ShareIcon";
+import { BACKEND_URL } from "../config";
 
 interface CardProps {
     title?: string;
     link?: string;
     types?: "twitter" | "youtube";
+    _id?: string;
 }
 
 const defaultstyle = "p-4 rounded shadow-lg bg-white max-w-md max-h-[350px]";
 
 export const Card = (props: CardProps) => {
+    function deletecontent() {
+        return async () => {
+            try {
+                // Assuming the backend API endpoint for deleting content is /api/content
+                const response = await axios.delete(`${BACKEND_URL}/content`, {
+                    headers: {
+                        "Authorization": `${localStorage.getItem("token")}`
+                    },
+                    data:{ contentId: props._id } // Send the link or ID of the content to be deleted
+                });
+                console.log(response) // true or false
+                if (response) {
+                    console.log('Content deleted successfully');
+                    // Optionally, you can add logic to refresh the content list or update the UI
+                } else {
+                    console.error('Failed to delete content');
+                }
+            } catch (error) {
+                console.error('Error deleting content:', error);
+            }
+        };
+    }
     return <div className={`${defaultstyle}`}>
         <div className="flex justify-between">
             <div className="flex items-center gap-2">
@@ -27,7 +52,7 @@ export const Card = (props: CardProps) => {
             </div>
             <div className="flex gap-2 items-center">
                 <button className="cursor-pointer"><ShareIcon size="sm" /></button>
-                <button className="cursor-pointer"><DeleteIcon size="sm" /></button>
+                <button className="cursor-pointer" onClick={deletecontent()}><DeleteIcon size="sm" /></button>
             </div>
         </div>
         {/* // here we are going to embed content of the*/}

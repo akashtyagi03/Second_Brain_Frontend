@@ -70,17 +70,17 @@ export function Dashboard(props: DashboardProps) {
                             )}
                         </div>
                         <Button starticon={<ShareIcon size="sm" />} variant="secondary" size="sm" text="Share Brain" onClick={async () => {
-                            try{
+                            try {
 
                                 const response = await axios.get(`${BACKEND_URL}/brain/share`, {
                                     params: { share: true }, // query params
                                     headers: {
-                                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                                        "Authorization": `${localStorage.getItem("token")}`
                                     }
                                 })
                                 props.setHash(response.data.hash)
                                 setSharedlinkmodel(true)
-                            }catch(error){
+                            } catch (error) {
                                 console.error("Error generating share link:", error);
                             }
                         }} />
@@ -89,7 +89,7 @@ export function Dashboard(props: DashboardProps) {
                 </div>
                 <div className='flex gap-2 pt-5 flex-wrap'>
                     {/* type is define yet, have define them */}
-                    {contents.map(({ link, title, types }) => <Card title={title} types={types} link={link} />)}
+                    {contents.map(({ link, title, types, _id }) => <Card title={title} types={types} link={link} _id={_id}/>)}
                 </div>
             </div>
         </div>
