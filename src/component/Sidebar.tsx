@@ -2,24 +2,44 @@ import { TwitterIcon } from "../icon/TwitterIcon";
 import { Sidebaritem } from "./Sidebaritem";
 import { YoutubeIcon } from "../icon/YoutubeIcon";
 import { DocumentIcon } from "../icon/DocumwntIcon";
-import { LinkIcon } from "../icon/LinkIcon";
-import { TagIcon } from "../icon/TagIcon";
 import { BrainIcon } from "../icon/BrainIcon";
+import { SidebarIcon } from "../icon/SidebarIcon";
+import { ImageIcon } from "../icon/ImageIcon";
+import { VideoIcon } from "../icon/VideoIcon";
 
-export function Sidebar() {
-    return <div className="h-screen bg-white w-70 fixed  left-0 top-0">
-        <div className="flex text-2xl pt-4 pl-5 items-center gap-2">
-            <div className="text-indigo-600">
-                <BrainIcon size="md"/>
-            </div>
-            Second_Brain
+interface SidebarProps {
+    isOpen: boolean;
+    toggleSidebar: () => void;
+}
+export function Sidebar(props: SidebarProps) {
+    return <div className={`
+        h-screen bg-white shadow-md
+        transition-all duration-300 ease-in-out
+        flex flex-col  /* Use for better internal alignment */
+        ${props.isOpen ? 'w-72' : 'w-20'}
+    `}>
+        {/* The toggle button is now functional */}
+        <div onClick={props.toggleSidebar} className="flex justify-end pr-3 pl-10 pt-2 cursor-pointer">
+            <SidebarIcon />
         </div>
+
+        {props.isOpen && (
+    <div className="flex items-center gap-2">
+        <div className="text-indigo-600">
+            <BrainIcon size="md" />
+        </div>
+        <span className="font-bold text-indigo-600 text-2xl whitespace-nowrap">
+            Second Brain
+        </span>
+    </div>
+)}
+
         <div className="p-10 cursor-pointer">
-            <Sidebaritem text={"twitter"} icon={<TwitterIcon />} />
-            <Sidebaritem text={"youtube"} icon={<YoutubeIcon />} />
-            <Sidebaritem text={"Document"} icon={<DocumentIcon />} />
-            <Sidebaritem text={"Links"} icon={<LinkIcon />} />
-            <Sidebaritem text={"Tags"} icon={<TagIcon />} />
+            <Sidebaritem isOpen={props.isOpen} text={"Twitter"} icon={<TwitterIcon />} />
+            <Sidebaritem isOpen={props.isOpen} text={"Youtube"} icon={<YoutubeIcon />} />
+            <Sidebaritem isOpen={props.isOpen} text={"Document"} icon={<DocumentIcon />} />
+            <Sidebaritem isOpen={props.isOpen} text={"Image"} icon={<ImageIcon />} />
+            <Sidebaritem isOpen={props.isOpen} text={"Video"} icon={<VideoIcon />} />
         </div>
     </div>
 }

@@ -2,9 +2,12 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User, LoaderCircle, AlertCircle } from 'lucide-react';
+interface signupprop{
+    username: string;
+    setUsername: (username: string) => void;
+}
 
-export function Signup() {
-    const [username, setUsername] = useState('');
+export function Signup(props:signupprop) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -17,7 +20,7 @@ export function Signup() {
         setIsLoading(true);
 
         // Basic validation
-        if (!username || !email || !password) {
+        if (!props.username || !email || !password) {
             setError("Please fill in all fields.");
             setIsLoading(false);
             return;
@@ -30,7 +33,7 @@ export function Signup() {
 
         try {
             const response = await axios.post('http://localhost:3000/api/v1/signup', {
-                username,
+                username:props.username,
                 email,
                 password,
             });
@@ -54,8 +57,8 @@ export function Signup() {
                         <input
                             type="text"
                             placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={props.username}
+                            onChange={(e) => props.setUsername(e.target.value)}
                             className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
                             required
                         />

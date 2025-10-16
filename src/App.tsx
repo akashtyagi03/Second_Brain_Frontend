@@ -5,19 +5,18 @@ import { Signup } from "./pages/Signup"
 import { useState } from "react"
 
 // add landing page for signup and login, 
-// add logout button in dashboard page
 // add share button functionality and add more thing like copy to clipboard and many more.
-// add profile page to change password and username
 
 function App() {
   const [hash, setHash] = useState("")
+  const [username, setUsername] = useState('');
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Signup />} />
+        <Route path="/" element={<Signup username={username} setUsername={setUsername} />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/Dashboard" element={<Dashboard hash={hash} setHash={setHash} />} />
+        <Route path="/Dashboard" element={<Dashboard hash={hash} setHash={setHash} username={username}/>} />
       </Routes>
     </BrowserRouter>
   )

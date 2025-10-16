@@ -22,7 +22,7 @@ const sizestyle = {
     "lg":"px-6 py-3 text-lg"
 }
 // when someone hover over the button it should have a slight dark effect by doing border and shadow
-const defaultstyle = "font-semibold rounded flex gap-2 cursor-pointer items-center";
+const defaultstyle = "font-semibold rounded-lg flex gap-2 cursor-pointer items-center";
 
 export const Button = (props:ButtonProps)=>{
     return <button type={props.type || "button"}  // ✅ default = "button",

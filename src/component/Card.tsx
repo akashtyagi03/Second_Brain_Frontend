@@ -1,16 +1,16 @@
 import axios from "axios";
 import { DeleteIcon } from "../icon/DeleteIcon";
-import { ShareIcon } from "../icon/ShareIcon";
 import { BACKEND_URL } from "../config";
+import { ExternallinkIcon } from "../icon/ExternallinkIcon";
 
 interface CardProps {
     title?: string;
     link?: string;
-    types?: "twitter" | "youtube";
+    types?: "twitter" | "youtube" | "reddit";
     _id?: string;
 }
 
-const defaultstyle = "p-4 rounded shadow-lg bg-white max-w-md max-h-[350px]";
+const defaultstyle = "p-4 rounded-2xl shadow-lg bg-white max-w-md max-h-[350px]";
 
 export const Card = (props: CardProps) => {
     function deletecontent() {
@@ -21,7 +21,7 @@ export const Card = (props: CardProps) => {
                     headers: {
                         "Authorization": `${localStorage.getItem("token")}`
                     },
-                    data:{ contentId: props._id } // Send the link or ID of the content to be deleted
+                    data: { contentId: props._id } // Send the link or ID of the content to be deleted
                 });
                 console.log(response) // true or false
                 if (response) {
@@ -43,15 +43,14 @@ export const Card = (props: CardProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => {
-                        if (!props.link) e.preventDefault(); // prevent broken link click
+                        if (!props.link) e.preventDefault();
                     }}
                 >
-                    <ShareIcon size="sm" />
+                    <ExternallinkIcon />
                 </a>
                 {props.title}
             </div>
             <div className="flex gap-2 items-center">
-                <button className="cursor-pointer"><ShareIcon size="sm" /></button>
                 <button className="cursor-pointer" onClick={deletecontent()}><DeleteIcon size="sm" /></button>
             </div>
         </div>
@@ -73,7 +72,7 @@ export const Card = (props: CardProps) => {
             {props.types === "twitter" && props.link && (
                 <div className="overflow-y-auto max-h-[280px]">
                     <blockquote className="twitter-tweet">
-                        <a href={props.link.replace("x.com", "twitter.com")}></a>
+                        <a href={props.link.replace("x.com", "twitter.com")}>Loading X's post...</a>
                     </blockquote>
                 </div>
             )}

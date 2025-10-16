@@ -12,14 +12,18 @@ interface Modelprops {
 
 enum ContentType {
     Youtube = "youtube",
-    Twitter = "twitter"
+    Twitter = "twitter",
+    Reddit = "Reddit",
+    document="document",
+    image="image",
+    video="video"
 }
 
 // when someone click outside the model it should close, add Onoutsideclick hook , how to do that figure out!
 export const CreateContentModel = (props: Modelprops) => {
     const titleref = useRef<HTMLInputElement>(null)
     const linkref = useRef<HTMLInputElement>(null)
-    const [types, setType] = useState(ContentType.Youtube)
+    const [types, setType] = useState<ContentType | "">("");
 
     async function addcontent() {
         const title = titleref.current?.value
@@ -44,23 +48,38 @@ export const CreateContentModel = (props: Modelprops) => {
     return <div>
         {props.open && <div className="w-screen h-screen bg-slate-500/60 fixed top-0 left-0 flex justify-center">
             <div className="flex flex-col justify-center">
-                <span className="bg-white p-4 rounded-md opacity-100">
-                    <div className="flex justify-end cursor-pointer" onClick={props.onclosed}>
+                <span className="bg-white p-6 rounded-md opacity-100">
+                    <div className="flex justify-between items-center cursor-pointer" onClick={props.onclosed}>
+                        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700">
+                            Add Content
+                        </h1>
                         <CrossIcon size="sm" />
                     </div>
-                    <div>
-                        <Input ref={linkref} placeholder={"Link"} />
-                        <Input ref={titleref} placeholder={"Title"} />
+                    <div className="p-2 flex flex-col justify-center items-center">
+                        <h1 className="font-bold">Title</h1>
+                        <Input ref={titleref} placeholder={"e.g., A Guide to Modern Web Development"} />
+                        <h1 className="font-bold">Link</h1>
+                        <Input ref={linkref} placeholder={"e.g., https://www.youtube.com/watch?v=..."} />
                     </div>
                     <div>
-                        <div className="flex gap-1 justify-center pb-2">
-                            <Button size="sm" text="Youtube" variant={types === ContentType.Youtube ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Youtube)}}></Button>
-                            <Button size="sm" text="Twitter" variant={types === ContentType.Twitter ? "primary" : "secondary"} onClick={() => {
-                                setType(ContentType.Twitter)}}></Button>
+                        <div className="flex justify-center pb-2">
+                            <select
+                                value={types}
+                                onChange={(e) => setType(e.target.value as ContentType)}
+                                className="px-3 py-1.5 text-sm font-medium text-white bg-gray-800 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            >
+                                <option value="" disabled hidden>
+                                    Select Platform...
+                                </option>
+                                <option value={ContentType.Youtube}>YouTube</option>
+                                <option value={ContentType.Twitter}>Twitter</option>
+                                <option value={ContentType.document}>Document</option>
+                                <option value={ContentType.image}>Image</option>
+                                <option value={ContentType.video}>Video</option>
+                            </select>
                         </div>
                     </div>
-                    <div className="flex justify-center rounded">
+                    <div className="flex justify-center rounded text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700">
                         <Button onClick={addcontent} text="Submit" variant="primary" size="md" />
                     </div>
                 </span>
