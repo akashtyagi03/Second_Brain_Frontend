@@ -22,8 +22,7 @@ export const Card = (props: CardProps) => {
                         "Authorization": `${localStorage.getItem("token")}`
                     },
                     data: { contentId: props._id } // Send the link or ID of the content to be deleted
-                });
-                console.log(response) // true or false
+                });                
                 if (response) {
                     console.log('Content deleted successfully');
                     // Optionally, you can add logic to refresh the content list or update the UI

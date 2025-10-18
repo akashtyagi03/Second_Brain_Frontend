@@ -38,8 +38,7 @@ export const CreateContentModel = (props: Modelprops) => {
             headers: {
                 "Authorization": `${localStorage.getItem("token")}`
             }
-        }).then((res) => {
-            console.log(res.data)
+        }).then(() => {
             props.onclosed && props.onclosed()
         })
         props.onclosed && props.onclosed()
@@ -48,25 +47,25 @@ export const CreateContentModel = (props: Modelprops) => {
     return <div>
         {props.open && <div className="w-screen h-screen bg-slate-500/60 fixed top-0 left-0 flex justify-center">
             <div className="flex flex-col justify-center">
-                <span className="bg-white p-6 rounded-md opacity-100">
+                <span className="bg-white h-100 w-100 p-5 rounded-md opacity-100">
                     <div className="flex justify-between items-center cursor-pointer" onClick={props.onclosed}>
                         <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700">
                             Add Content
                         </h1>
                         <CrossIcon size="sm" />
                     </div>
-                    <div className="p-2 flex flex-col justify-center items-center">
+                    <div className="p-5 flex flex-col justify-center items-center">
                         <h1 className="font-bold">Title</h1>
                         <Input ref={titleref} placeholder={"e.g., A Guide to Modern Web Development"} />
                         <h1 className="font-bold">Link</h1>
                         <Input ref={linkref} placeholder={"e.g., https://www.youtube.com/watch?v=..."} />
                     </div>
                     <div>
-                        <div className="flex justify-center pb-2">
+                        <div className="flex justify-center pb-5">
                             <select
                                 value={types}
                                 onChange={(e) => setType(e.target.value as ContentType)}
-                                className="px-3 py-1.5 text-sm font-medium text-white bg-gray-800 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="px-10 py-2 text-lg font-medium text-white bg-gray-700 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             >
                                 <option value="" disabled hidden>
                                     Select Platform...

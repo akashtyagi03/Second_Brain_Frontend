@@ -9,7 +9,7 @@ export function useContent(){
             headers:{
                 "Authorization":`${localStorage.getItem("token")}`
             }
-        })
+        })                                      
             .then((r)=>{
                 setContents(r.data.contents)            
             })
@@ -18,7 +18,7 @@ export function useContent(){
         refresh()
         let interval = setInterval(()=>{
             refresh()
-        }, 10*1000)
+        }, 2000)
         return ()=>{
             clearInterval(interval)
         }

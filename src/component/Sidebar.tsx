@@ -16,7 +16,7 @@ export function Sidebar(props: SidebarProps) {
         h-screen bg-white shadow-md
         transition-all duration-300 ease-in-out
         flex flex-col  /* Use for better internal alignment */
-        ${props.isOpen ? 'w-72' : 'w-20'}
+        ${props.isOpen ? 'w-75' : 'w-20'}
     `}>
         {/* The toggle button is now functional */}
         <div onClick={props.toggleSidebar} className="flex justify-end pr-3 pl-10 pt-2 cursor-pointer">
@@ -24,9 +24,9 @@ export function Sidebar(props: SidebarProps) {
         </div>
 
         {props.isOpen && (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 pl-5">
         <div className="text-indigo-600">
-            <BrainIcon size="md" />
+            <BrainIcon size="sm" />
         </div>
         <span className="font-bold text-indigo-600 text-2xl whitespace-nowrap">
             Second Brain
