@@ -48,7 +48,7 @@ export const CreateContentModel = (props: Modelprops) => {
         {props.open && <div className="w-screen h-screen bg-slate-500/60 fixed top-0 left-0 flex justify-center">
             <div className="flex flex-col justify-center">
                 <span className="bg-white h-100 w-100 p-5 rounded-md opacity-100">
-                    <div className="flex justify-between items-center cursor-pointer" onClick={props.onclosed}>
+                    <div className="flex justify-between items-center" onClick={props.onclosed}>
                         <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700">
                             Add Content
                         </h1>
@@ -56,9 +56,9 @@ export const CreateContentModel = (props: Modelprops) => {
                     </div>
                     <div className="p-5 flex flex-col justify-center items-center">
                         <h1 className="font-bold">Title</h1>
-                        <Input ref={titleref} placeholder={"e.g., A Guide to Modern Web Development"} />
+                        <Input ref={titleref} placeholder={"Enter your title"} />
                         <h1 className="font-bold">Link</h1>
-                        <Input ref={linkref} placeholder={"e.g., https://www.youtube.com/watch?v=..."} />
+                        <Input ref={linkref} placeholder={"Enter your url"} />
                     </div>
                     <div>
                         <div className="flex justify-center pb-5">

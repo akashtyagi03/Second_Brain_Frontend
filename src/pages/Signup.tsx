@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, Mail, Lock, User, LoaderCircle, AlertCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
 interface signupprop{
     username: string;
     setUsername: (username: string) => void;
@@ -21,16 +22,14 @@ export function Signup(props:signupprop) {
 
         // Basic validation
         if (!props.username || !email || !password) {
-            setError("Please fill in all fields.");
-            setIsLoading(false);
+            toast.error("Please fill in all fields.");
             return;
         }
         if (password.length < 6) {
-            setError("Password must be at least 6 characters long.");
+            toast.error("Password must be at least 6 characters long.");
             setIsLoading(false);
             return;
         }
-
         try {
             const response = await axios.post('http://localhost:3000/api/v1/signup', {
                 username:props.username,
@@ -39,6 +38,7 @@ export function Signup(props:signupprop) {
             });
             localStorage.setItem('token', response.data.token);
             navigate('/Dashboard');
+            toast.success("Signup successful!");
         } catch (err) {
             console.log("error is ", err);
             // setError(errorMessage);

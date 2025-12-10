@@ -62,7 +62,6 @@ export const Card = (props: CardProps) => {
                         .replace("watch?v=", "embed/")
                         .replace("youtu.be/", "youtube.com/embed/")}
                     title={props.title}
-                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
